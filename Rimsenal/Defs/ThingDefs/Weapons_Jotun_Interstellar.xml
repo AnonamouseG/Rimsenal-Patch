@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ThingDefs>
+
+
+  <ThingDef Name="BaseGun" Abstract="True">
+    <category>Item</category>
+    <thingClass>ThingWithComps</thingClass>
+    <equipmentType>Primary</equipmentType>
+    <pathCost>10</pathCost>
+    <useHitPoints>True</useHitPoints>
+    <selectable>True</selectable>
+    <graphicData>
+      <onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
+    </graphicData>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Flammability>0.9</Flammability>
+      <DeteriorationRate>0.5</DeteriorationRate>
+      <SellPriceFactor>0.25</SellPriceFactor>
+    </statBases>
+    <altitudeLayer>Item</altitudeLayer>
+    <alwaysHaulable>True</alwaysHaulable>
+    <tickerType>Never</tickerType>
+    <techLevel>Spacer</techLevel>
+    <thingCategories>
+      <li>JIWeapons</li>
+    </thingCategories>
+    <inspectorTabs>
+      <li>ITab_Art</li>
+    </inspectorTabs>
+    <comps>
+      <li>
+        <compClass>CompForbiddable</compClass>
+      </li>
+      <li>
+        <compClass>CompEquippable</compClass>
+      </li>
+      <li>
+        <compClass>CompQuality</compClass>
+      </li>
+      <li>
+        <compClass>CompArt</compClass>
+        <nameMaker>NamerGun</nameMaker>
+        <descriptionMaker>ArtWeaponGun</descriptionMaker>
+        <minQualityForArtistic>Excellent</minQualityForArtistic>
+      </li>
+    </comps>
+    <smeltProducts>
+      <SteelBar>10</SteelBar>
+      <PlasteelBar>10</PlasteelBar>
+    </smeltProducts>
+  </ThingDef>
+
+
+  <ThingDef Name="BaseHumanGun" ParentName="BaseGun" Abstract="True">
+    <weaponTags>
+      <li>JIGun</li>
+      <li>AdvancedGun</li>
+    </weaponTags>
+    <tradeTags>
+      <li>CerRE</li>
+    </tradeTags>
+  </ThingDef>
+
+
+  <ThingDef Name="BaseBullet" Abstract="True">
+    <category>Projectile</category>
+    <tickerType>Normal</tickerType>
+    <altitudeLayer>Projectile</altitudeLayer>
+    <thingClass>Bullet</thingClass>
+    <label>bullet</label>
+    <useHitPoints>False</useHitPoints>
+    <neverMultiSelect>True</neverMultiSelect>
+    <graphicData>
+      <shaderType>Transparent</shaderType>
+    </graphicData>
+  </ThingDef>
+
+  <!-- ============================================================== -->
+
+ 	<ThingDef ParentName="BaseBullet">
+		<defName>RS_Bullet_Grendel</defName>
+		<label>Grendel Shell</label>
+		<graphicData>
+		<texPath>Things/Projectile/Shell</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+    <thingClass>Projectile_Explosive</thingClass>
+    <projectile>
+	<flyOverhead>True</flyOverhead>
+	<damageDef>Bomb</damageDef>
+	<damageAmountBase>60</damageAmountBase>
+	<explosionRadius>2.2</explosionRadius>
+	<speed>30</speed>
+    </projectile>
+  </ThingDef>
+
+	<ThingDef ParentName="BaseHumanGun">
+		<defName>RS_Gun_Grendel</defName>
+		<label>Siege gun</label>
+<description>The Jotun Interstellar JA-55A4 "Grendel". The legacy of a grim mechanoid war, the Grendel siege gun is one of the most formidable man-portable siege weapons acrosss the galaxy. Perfect for home defense or scaring the neighbours away from your daughters</description>
+		<graphicData>
+		<texPath>Things/A10/Grendel</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>InteractChargeRifle</soundInteract>
+		<statBases>
+			<MarketValue>3600</MarketValue>
+			<WorkToMake>4000</WorkToMake>
+			<MaxHitPoints>300</MaxHitPoints>
+				<AccuracyTouch>0.35</AccuracyTouch>
+				<AccuracyShort>0.55</AccuracyShort>
+				<AccuracyMedium>0.65</AccuracyMedium>
+				<AccuracyLong>0.55</AccuracyLong>
+				<RangedWeapon_Cooldown>5.6</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<SteelBar>90</SteelBar>
+			<Silver>50</Silver>
+		</costList>
+		<recipeMaker>
+			<skillRequirements>
+				<li>
+					<skill>Crafting</skill>
+					<minLevel>6</minLevel>
+				</li>
+			</skillRequirements>
+			<workSpeedStat>SmithingSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<recipeUsers>
+				<li>WeaponCraftingTable</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+		</recipeMaker>
+		<equippedStatOffsets>
+			<MoveSpeed>-1.0</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<projectileDef>RS_Bullet_Grendel</projectileDef>
+				<burstShotCount>3</burstShotCount>
+				<ticksBetweenBurstShots>40</ticksBetweenBurstShots>
+				<warmupTicks>1500</warmupTicks>
+				<minRange>10</minRange>
+				<range>50</range>
+				<forcedMissRadius>8</forcedMissRadius>
+				<soundCast>RS_ShotGrendel</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<targetParams>
+				  <canTargetLocations>true</canTargetLocations>
+				</targetParams>
+				<muzzleFlashScale>19</muzzleFlashScale>
+			</li>
+		</verbs>
+	</ThingDef>
+ <!-- ============================================================== -->
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>RS_Bullet_Beowulf</defName>
+		<label>Beowulf slug</label>
+		<graphicData>
+		<texPath>Things/Projectile/Slug</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<DamageAmountBase>35</DamageAmountBase>
+			<Speed>65</Speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseHumanGun">
+		<defName>RS_Gun_Beowulf</defName>
+		<label>Heavy rifle</label>
+<description>A JA-12A2 "Beowulf" heavy rifle, manufactured by Jotun Interstellar. The designer of the Beowulf was never concerned about ascetics. What he focused on was just pure fire power.</description>
+		<graphicData>
+		<texPath>Things/A10/Beowulf</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>InteractChargeRifle</soundInteract>
+		<statBases>
+			<MarketValue>1550</MarketValue>
+			<WorkToMake>4000</WorkToMake>
+			<MaxHitPoints>350</MaxHitPoints>
+				<AccuracyTouch>0.65</AccuracyTouch>
+				<AccuracyShort>0.75</AccuracyShort>
+				<AccuracyMedium>0.79</AccuracyMedium>
+				<AccuracyLong>0.68</AccuracyLong>
+				<RangedWeapon_Cooldown>0.57</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<SteelBar>60</SteelBar>
+			<Silver>50</Silver>
+		</costList>
+		<recipeMaker>
+			<skillRequirements>
+				<li>
+					<skill>Crafting</skill>
+					<minLevel>6</minLevel>
+				</li>
+			</skillRequirements>
+			<workSpeedStat>SmithingSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<recipeUsers>
+				<li>WeaponCraftingTable</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+		</recipeMaker>
+		<equippedStatOffsets>
+			 <MoveSpeed>-0.3</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<projectileDef>RS_Bullet_Beowulf</projectileDef>
+				<warmupTicks>120</warmupTicks>
+				<range>30</range>
+				<soundCast>RS_ShotBeowulf</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>14</muzzleFlashScale>
+			</li>
+		</verbs>
+	</ThingDef>
+
+  <!-- ============================================================== -->
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_Trollbane</defName>
+    <label>Trollbane slug</label>
+    <graphicData>
+	<texPath>Things/Projectile/Slug</texPath>
+    <graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <DamageAmountBase>30</DamageAmountBase>
+      <Speed>60</Speed>
+    </projectile>
+  </ThingDef>
+
+
+  <ThingDef ParentName="BaseHumanGun">
+    <defName>RS_Gun_Trollbane</defName>
+    <label>Heavy pistol</label>
+    <description>A JA-32A6E "Trollbane". It is the most Popular large caliber pistol made by Jotun Interstellar. Fires a 50 caliber plasteel alloy round, fire from a Trollbane can solve most of lonely colonies problems.</description>
+    <graphicData>
+	<texPath>Things/A10/Trollbane</texPath>
+    <graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+    <soundInteract>InteractChargeRifle</soundInteract>
+    <statBases>
+      <MaxHitPoints>250</MaxHitPoints>
+	  <WorkToMake>2000</WorkToMake>
+      <MarketValue>1200</MarketValue>
+      <AccuracyTouch>0.85</AccuracyTouch>
+      <AccuracyShort>0.69</AccuracyShort>
+      <AccuracyMedium>0.45</AccuracyMedium>
+      <AccuracyLong>0.28</AccuracyLong>
+      <RangedWeapon_Cooldown>0.9</RangedWeapon_Cooldown>
+    </statBases>
+	<costList>
+			<SteelBar>40</SteelBar>
+			<Silver>45</Silver>	
+		</costList>
+		<recipeMaker>
+			<skillRequirements>
+				<li>
+					<skill>Crafting</skill>
+					<minLevel>6</minLevel>
+				</li>
+			</skillRequirements>
+			<workSpeedStat>SmithingSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<recipeUsers>
+				<li>WeaponCraftingTable</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+		</recipeMaker>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>Bullet_Trollbane</projectileDef>
+        <warmupTicks>79</warmupTicks>
+        <range>20</range>
+        <soundCast>RS_ShotTrollbane</soundCast>
+        <soundCastTail>GunTail_Medium</soundCastTail>
+        <muzzleFlashScale>14</muzzleFlashScale>
+      </li>
+    </verbs>
+  </ThingDef>
+
+ <!-- ============================================================== -->
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_Fafnir</defName>
+    <label>Fafnir bucks</label>
+	<graphicData>
+    <texPath>Things/Projectile/Slug</texPath>
+    <graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+    <projectile>
+      <damageDef>ArmorPiercing</damageDef>
+      <DamageAmountBase>11</DamageAmountBase>
+      <Speed>100</Speed>
+    </projectile>
+  </ThingDef>
+
+
+  <ThingDef ParentName="BaseHumanGun">
+    <defName>RS_Gun_Fafnir</defName>
+    <label>Siege shotgun</label>
+    <description>This oversized shotgun is the Jotun Interstellar JA-66A2 "Fafnir", Made by splinting multiple AA gun barrel's together. The Fafnir is a weapon used to fight against mechanoids in urban warfare. If a person was to accidently take a burst from this siege shotgun, they would be instantly turned into sticky red mist. Not recommended for hunting purposes</description>
+    <graphicData>
+	<texPath>Things/A10/Fafnir</texPath>
+    <graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+    <soundInteract>InteractShotgun</soundInteract>
+	<equippedStatOffsets>
+			 <MoveSpeed>-0.3</MoveSpeed>
+	</equippedStatOffsets>
+    <statBases>
+      <MaxHitPoints>350</MaxHitPoints>
+	  <WorkToMake>2500</WorkToMake>
+      <MarketValue>1975</MarketValue>
+      <AccuracyTouch>0.7</AccuracyTouch>
+      <AccuracyShort>0.6</AccuracyShort>
+      <AccuracyMedium>0.35</AccuracyMedium>
+      <AccuracyLong>0.15</AccuracyLong>
+      <RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+    </statBases>
+	<costList>
+			<SteelBar>50</SteelBar>
+			<Silver>15</Silver>	
+		</costList>
+		<recipeMaker>
+			<skillRequirements>
+				<li>
+					<skill>Crafting</skill>
+					<minLevel>6</minLevel>
+				</li>
+			</skillRequirements>
+			<workSpeedStat>SmithingSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<recipeUsers>
+				<li>WeaponCraftingTable</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+		</recipeMaker>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>Bullet_Fafnir</projectileDef>
+        <warmupTicks>75</warmupTicks>
+        <range>16</range>
+        <soundCast>RS_ShotTrollbane</soundCast>
+        <soundCastTail>GunTail_Medium</soundCastTail>
+        <burstShotCount>5</burstShotCount>
+        <ticksBetweenBurstShots>0</ticksBetweenBurstShots>
+        <muzzleFlashScale>14</muzzleFlashScale>
+      </li>
+    </verbs>
+  </ThingDef>
+
+ <!-- ============================================================== -->
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>RS_Bullet_Notung</defName>
+		<label>Notung round</label>
+		<graphicData>
+		<texPath>Things/Projectile/Shell</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<thingClass>Bullet</thingClass>
+		<projectile>
+			<damageDef>ArmorPiercing</damageDef>
+			<DamageAmountBase>45</DamageAmountBase>
+			<Speed>130</Speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseHumanGun">
+		<defName>RS_Gun_Notung</defName>
+		<label>AM rifle</label>
+		<description>A JA-67A1 "Notung" Anti Mechanoid rifle. As heavy as a small truck and just as hard to wield, the recoil from a Notung is as strong as the kick from a mule. Recommended for use against heavy mechanoids only</description>
+		<graphicData>
+		<texPath>Things/A10/Notung</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>InteractChargeRifle</soundInteract>
+		<statBases>
+			<MarketValue>2550</MarketValue>
+			<MaxHitPoints>260</MaxHitPoints>
+			<WorkToMake>3000</WorkToMake>
+				<AccuracyTouch>0.35</AccuracyTouch>
+				<AccuracyShort>0.55</AccuracyShort>
+				<AccuracyMedium>0.79</AccuracyMedium>
+				<AccuracyLong>0.83</AccuracyLong>
+				<RangedWeapon_Cooldown>3.91</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<SteelBar>80</SteelBar>
+			<Silver>50</Silver>	
+		</costList>
+		<recipeMaker>
+			<skillRequirements>
+				<li>
+					<skill>Crafting</skill>
+					<minLevel>6</minLevel>
+				</li>
+			</skillRequirements>
+			<workSpeedStat>SmithingSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<recipeUsers>
+				<li>WeaponCraftingTable</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+		</recipeMaker>
+		<equippedStatOffsets>
+			 <MoveSpeed>-0.5</MoveSpeed>
+		</equippedStatOffsets>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<projectileDef>RS_Bullet_Notung</projectileDef>
+				<warmupTicks>288</warmupTicks>
+				<range>45</range>
+				<soundCast>RS_ShotGrendel</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>17</muzzleFlashScale>
+			</li>
+		</verbs>
+	</ThingDef>
+
+ <!-- ============================================================== -->
+
+	<ThingDef ParentName="BaseHumanGun">
+		<defName>NotungDP</defName>
+		<label>AM rifle</label>
+		<description>A JA-67A1 "Notung" Anti Mechanoid rifle. As heavy as a small truck and just as hard to wield, the recoil from a Notung is as strong as the kick from a mule. Recommended for use against heavy mechanoids only</description>
+		<graphicData>
+		<texPath>Things/A10/Notung</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>InteractChargeRifle</soundInteract>
+    <menuHidden>true</menuHidden>
+    <canBeSpawningInventory>false</canBeSpawningInventory>
+    <tradeability>Never</tradeability>
+	<equippedStatOffsets>
+			 <MoveSpeed>-0.5</MoveSpeed>
+	</equippedStatOffsets>
+		<statBases>
+			<MarketValue>2550</MarketValue>
+			<MaxHitPoints>260</MaxHitPoints>
+			<WorkToMake>3000</WorkToMake>
+				<AccuracyTouch>0.55</AccuracyTouch>
+				<AccuracyShort>0.65</AccuracyShort>
+				<AccuracyMedium>0.89</AccuracyMedium>
+				<AccuracyLong>0.97</AccuracyLong>
+				<RangedWeapon_Cooldown>3.01</RangedWeapon_Cooldown>
+		</statBases>
+    <weaponTags>
+      <li>TurretGun</li>
+    </weaponTags>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<projectileDef>RS_Bullet_Notung</projectileDef>
+				<warmupTicks>220</warmupTicks>
+				<range>50</range>
+				<soundCast>RS_ShotGrendel</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>17</muzzleFlashScale>
+			</li>
+		</verbs>
+	</ThingDef>
+
+</ThingDefs>

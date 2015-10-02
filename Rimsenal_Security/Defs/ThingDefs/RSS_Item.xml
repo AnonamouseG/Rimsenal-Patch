@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<GameData>
+
+
+  <ThingDef Name="ResourceBase" Abstract="True">
+    <thingClass>ThingWithComps</thingClass>
+    <label>unspecified resource</label>
+    <category>Item</category>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <useHitPoints>true</useHitPoints>
+    <statBases>
+      <Flammability>1.0</Flammability>
+    </statBases>
+    <selectable>true</selectable>
+    <altitudeLayer>Item</altitudeLayer>
+    <stackLimit>75</stackLimit>
+    <comps>
+      <li>
+        <compClass>CompForbiddable</compClass>
+      </li>
+    </comps>
+    <alwaysHaulable>true</alwaysHaulable>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <rotatable>false</rotatable>
+    <pathCost>15</pathCost>
+  </ThingDef>
+
+
+  <ThingDef Name="ResourceVerbBase" ParentName="ResourceBase" Abstract="True">
+    <equipmentType>Primary</equipmentType>
+    <techLevel>Neolithic</techLevel>
+    <comps>
+      <li>
+        <compClass>CompEquippable</compClass>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!--=============== ISD ====================-->
+
+
+  <ThingDef ParentName="ResourceBase">
+    <defName>RSISD</defName>
+    <label>shard sentry device</label>
+    <description>Undeployed shard sentry</description>
+    <graphicData>
+      <texPath>Things/Building/ISD</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <soundInteract>Metal_Drop</soundInteract>
+    <soundDrop>Metal_Drop</soundDrop>
+    <stackLimit>1</stackLimit>
+    <useHitPoints>true</useHitPoints>
+    <statBases>
+      <MarketValue>1500</MarketValue>
+      <MaxHitPoints>100</MaxHitPoints>
+    </statBases>
+    <thingCategories>
+      <li>Exotic</li>
+    </thingCategories>
+    <drawGUIOverlay>false</drawGUIOverlay>
+    <tradeTags>
+      <li>Exotic</li>
+    </tradeTags>
+  </ThingDef>
+
+  <!--=============== FBS ====================-->
+
+
+  <ThingDef ParentName="ResourceBase">
+    <defName>RSFBS</defName>
+    <label>fire base set</label>
+    <description>Undeployed blixt cannon</description>
+    <graphicData>
+      <texPath>Things/Building/FB</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <soundInteract>Metal_Drop</soundInteract>
+    <soundDrop>Metal_Drop</soundDrop>
+    <stackLimit>1</stackLimit>
+    <useHitPoints>true</useHitPoints>
+    <statBases>
+      <MarketValue>2000</MarketValue>
+      <MaxHitPoints>100</MaxHitPoints>
+    </statBases>
+    <thingCategories>
+      <li>Exotic</li>
+    </thingCategories>
+    <drawGUIOverlay>false</drawGUIOverlay>
+    <tradeTags>
+      <li>Exotic</li>
+    </tradeTags>
+  </ThingDef>
+
+  <!--=============== OL ====================-->
+
+
+  <ThingDef ParentName="ResourceBase">
+    <defName>RSOL</defName>
+    <label>orkan launcher</label>
+    <description>Undeployed orkan launcher</description>
+    <graphicData>
+      <texPath>Things/Building/OrkanLauncher</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <soundInteract>Metal_Drop</soundInteract>
+    <soundDrop>Metal_Drop</soundDrop>
+    <stackLimit>1</stackLimit>
+    <useHitPoints>true</useHitPoints>
+    <statBases>
+      <MarketValue>2500</MarketValue>
+      <MaxHitPoints>100</MaxHitPoints>
+    </statBases>
+    <thingCategories>
+      <li>Exotic</li>
+    </thingCategories>
+    <drawGUIOverlay>false</drawGUIOverlay>
+    <tradeTags>
+      <li>Exotic</li>
+    </tradeTags>
+  </ThingDef>
+
+  <!--=============== BC ====================-->
+
+
+  <ThingDef ParentName="ResourceBase">
+    <defName>RSBC</defName>
+    <label>fire base set</label>
+    <description>Undeployed fire base</description>
+    <graphicData>
+      <texPath>Things/Building/BlixtCannon</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <soundInteract>Metal_Drop</soundInteract>
+    <soundDrop>Metal_Drop</soundDrop>
+    <stackLimit>1</stackLimit>
+    <useHitPoints>true</useHitPoints>
+    <statBases>
+      <MarketValue>2000</MarketValue>
+      <MaxHitPoints>100</MaxHitPoints>
+    </statBases>
+    <thingCategories>
+      <li>Exotic</li>
+    </thingCategories>
+    <drawGUIOverlay>false</drawGUIOverlay>
+    <tradeTags>
+      <li>Exotic</li>
+    </tradeTags>
+  </ThingDef>
+</GameData>

@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ThingDefs>
+
+  <ThingDef Name="BuildingBase" Abstract="True">
+    <category>Building</category>
+    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
+    <selectable>true</selectable>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <repairEffect>Repair</repairEffect>
+    <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+    <filthLeaving>BuildingRubble</filthLeaving>
+  </ThingDef>
+
+  <!--=============== shard sentry ===============-->
+  <ThingDef ParentName="BuildingBase">
+    <defName>RSSS</defName>
+    <label>shard sentry</label>
+    <thingClass>Building_TurretGun</thingClass>
+    <graphicData>
+      <texPath>Things/Building/IS</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(3,3)</drawSize>
+    </graphicData>
+    <altitudeLayer>Waist</altitudeLayer>
+    <statBases>
+      <MaxHitPoints>200</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <WorkToMake>3000</WorkToMake>
+      <Beauty>-60</Beauty>
+    </statBases>
+    <tickerType>Normal</tickerType>
+    <comps>
+      <li>
+        <compClass>CompExplosive</compClass>
+        <explosiveRadius>3.5</explosiveRadius>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+      </li>
+      <li>
+        <compClass>CompForbiddable</compClass>
+      </li>
+      <li>
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>600</basePowerConsumption>
+      </li>
+    </comps>
+    <description>Sentry gun with a shard cannon. High fire rate and low fire power, completed in an instant. explodes when destroyed.</description>
+    <size>(1,1)</size>
+    <passability>PassThroughOnly</passability>
+    <pathCost>50</pathCost>
+    <castEdgeShadows>true</castEdgeShadows>
+    <fillPercent>0.4</fillPercent>
+    <costList>
+      <RSISD>1</RSISD>
+    </costList>
+    <combatTargetBuilding>true</combatTargetBuilding>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <designationCategory>Security</designationCategory>
+    <specialDisplayRadius>24</specialDisplayRadius>
+    <building>
+      <ai_combatDangerous>true</ai_combatDangerous>
+      <turretGunDef>Gun_RSSS</turretGunDef>
+      <turretBurstCooldownTicks>250</turretBurstCooldownTicks>
+<turretTopgraphicPath>Things/Building/IS_Gun</turretTopgraphicPath>
+    </building>
+  </ThingDef>
+
+  <!--=============== Automatic grenade launcher ===============-->
+  <ThingDef ParentName="BuildingBase">
+    <defName>RSGN</defName>
+    <label>grenade nest</label>
+    <thingClass>Building_TurretGun</thingClass>
+    <graphicData>
+      <texPath>Things/Building/AGL</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(3,1)</drawSize>
+    </graphicData>
+    <uiIconPath>Things/Building/AGL_menuicon</uiIconPath>
+    <altitudeLayer>Waist</altitudeLayer>
+    <hasInteractionCell>True</hasInteractionCell>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+    <statBases>
+      <MaxHitPoints>250</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <WorkToMake>5500</WorkToMake>
+      <Beauty>-65</Beauty>
+    </statBases>
+    <tickerType>Normal</tickerType>
+    <comps>
+      <li>
+        <compClass>CompExplosive</compClass>
+        <explosiveRadius>4</explosiveRadius>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+      </li>
+      <li>
+        <compClass>CompForbiddable</compClass>
+      </li>
+      <li>
+        <compClass>CompMannable</compClass>
+      </li>
+     </comps>
+    <description>Fixed gun nest with a mounted automatic grenade launcher. Greatly effective against massed enemies. Explode when destroyed.</description>
+    <size>(3,1)</size>
+    <passability>PassThroughOnly</passability>
+    <pathCost>50</pathCost>
+    <castEdgeShadows>true</castEdgeShadows>
+    <fillPercent>0.5</fillPercent>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Stony</li>
+    </stuffCategories>
+    <costStuffCount>50</costStuffCount>
+    <costList>
+      <Steel>150</Steel>
+      <GDJaguar>1</GDJaguar>
+    </costList>
+    <combatTargetBuilding>true</combatTargetBuilding>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <designationCategory>Security</designationCategory>
+    <specialDisplayRadius>30</specialDisplayRadius>
+    <building>
+      <turretGunDef>Gun_RSGN</turretGunDef>
+      <turretBurstWarmupTicks>40</turretBurstWarmupTicks>
+      <turretBurstCooldownTicks>55</turretBurstCooldownTicks>
+      <turretTopgraphicPath>Things/Building/AGLGun</turretTopgraphicPath>
+    </building>
+    <staticSunShadowHeight>0.40</staticSunShadowHeight>
+    <researchPrerequisite>HighPoweredMannable</researchPrerequisite>
+  </ThingDef>
+
+  <!--=============== Harvester ===============-->
+  <ThingDef ParentName="BuildingBase">
+    <defName>RSHV</defName>
+    <label>harvester</label>
+    <thingClass>Building_TurretGun</thingClass>
+    <graphicData>
+      <texPath>Things/Building/Harvester</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(3,1)</drawSize>
+    </graphicData>
+    <uiIconPath>Things/Building/Harvester_menuicon</uiIconPath>
+    <altitudeLayer>Waist</altitudeLayer>
+    <hasInteractionCell>True</hasInteractionCell>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+    <statBases>
+      <MaxHitPoints>480</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <WorkToMake>6700</WorkToMake>
+      <Beauty>-80</Beauty>
+    </statBases>
+    <tickerType>Normal</tickerType>
+    <comps>
+      <li>
+        <compClass>CompExplosive</compClass>
+        <explosiveRadius>5</explosiveRadius>
+        <explosiveDamageType>Optic</explosiveDamageType>
+      </li>
+      <li>
+        <compClass>CompForbiddable</compClass>
+      </li>
+      <li>
+        <compClass>CompMannable</compClass>
+      </li>
+      <li>
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>950</basePowerConsumption>
+      </li>
+     </comps>
+    <description>This type of burst laser emplacements are called "Harvesters". As can be inferred from it's name this heavy weapon turret can mow entire enemy groups down in no time.</description>
+    <size>(3,1)</size>
+    <passability>PassThroughOnly</passability>
+    <pathCost>50</pathCost>
+    <castEdgeShadows>true</castEdgeShadows>
+    <fillPercent>0.5</fillPercent>
+ <costList>
+      <Steel>250</Steel>
+      <Uranium>50</Uranium>
+      <Plasteel>80</Plasteel>
+      <RS_Gun_Pacificator>4</RS_Gun_Pacificator>
+</costList>
+    <combatTargetBuilding>true</combatTargetBuilding>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <designationCategory>Security</designationCategory>
+    <specialDisplayRadius>30</specialDisplayRadius>
+    <building>
+      <turretGunDef>Gun_RSHV</turretGunDef>
+      <turretBurstWarmupTicks>60</turretBurstWarmupTicks>
+      <turretBurstCooldownTicks>65</turretBurstCooldownTicks>
+      <turretTopgraphicPath>Things/Building/Harvester_Gun</turretTopgraphicPath>
+    </building>
+    <staticSunShadowHeight>0.40</staticSunShadowHeight>
+    <researchPrerequisite>LaserTurret</researchPrerequisite>
+  </ThingDef>
+
+  <!--=============== Orkan ===============-->
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>RSOK</defName>
+    <label>orkan launcher</label>
+    <thingClass>Building_TurretGun</thingClass>
+    <graphicData>
+      <texPath>Things/Building/FB</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(4,4)</drawSize>
+    </graphicData>
+    <altitudeLayer>Waist</altitudeLayer>
+    <hasInteractionCell>True</hasInteractionCell>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+    <statBases>
+      <MaxHitPoints>210</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <WorkToMake>6400</WorkToMake>
+      <Beauty>-65</Beauty>
+    </statBases>
+    <tickerType>Normal</tickerType>
+    <comps>
+      <li>
+        <compClass>CompExplosive</compClass>
+        <explosiveRadius>6.5</explosiveRadius>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+      </li>
+      <li>
+        <compClass>CompForbiddable</compClass>
+      </li>
+      <li>
+        <compClass>CompMannable</compClass>
+        <manWorkType>Violent</manWorkType>
+      </li>
+    </comps>
+    <description>"Orkan" multi rocket launcher is a formidable siege weapon. It can provide support fire onto distant enemy positions.</description>
+    <size>(2,2)</size>
+    <passability>PassThroughOnly</passability>
+    <pathCost>50</pathCost>
+    <fillPercent>0.4</fillPercent>
+    <castEdgeShadows>true</castEdgeShadows>
+    <costList>
+      <RSFBS>1</RSFBS>
+      <RSOL>1</RSOL>
+    </costList>
+    <combatTargetBuilding>true</combatTargetBuilding>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <designationCategory>Security</designationCategory>
+    <building>
+      <turretGunDef>Gun_RSOK</turretGunDef>
+      <turretShellDef>ArtilleryShell</turretShellDef>
+      <turretBurstWarmupTicks>310</turretBurstWarmupTicks>
+      <turretBurstCooldownTicks>3200</turretBurstCooldownTicks>
+      <turretTopgraphicPath>Things/Building/Orkan</turretTopgraphicPath>
+      <buildingTags>
+        <li>Artillery</li>
+      </buildingTags>
+    </building>
+    <placeWorkers>
+      <li>PlaceWorker_NotUnderRoof</li>
+    </placeWorkers>
+    <researchPrerequisite>RocketLauncher</researchPrerequisite>
+  </ThingDef>
+
+  <!--=============== Blixt ===============-->
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>RSBX</defName>
+    <label>blixt cannon</label>
+    <thingClass>Building_TurretGun</thingClass>
+    <graphicData>
+      <texPath>Things/Building/FB</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(4,4)</drawSize>
+    </graphicData>
+    <altitudeLayer>Waist</altitudeLayer>
+    <hasInteractionCell>True</hasInteractionCell>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+    <statBases>
+      <MaxHitPoints>320</MaxHitPoints>
+      <Flammability>0.7</Flammability>
+      <WorkToMake>5700</WorkToMake>
+      <Beauty>-63</Beauty>
+    </statBases>
+    <tickerType>Normal</tickerType>
+    <comps>
+      <li>
+        <compClass>CompExplosive</compClass>
+        <explosiveRadius>3.5</explosiveRadius>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+      </li>
+      <li>
+        <compClass>CompForbiddable</compClass>
+      </li>
+      <li>
+        <compClass>CompMannable</compClass>
+        <manWorkType>Violent</manWorkType>
+      </li>
+    </comps>
+    <description>Reliably Propelling a molten metal projectile, the Blixt cannon is the main anti heavy Mechanoid weapon of Jotunheim Prime.</description>
+    <size>(2,2)</size>
+    <passability>PassThroughOnly</passability>
+    <pathCost>50</pathCost>
+    <fillPercent>0.4</fillPercent>
+    <castEdgeShadows>true</castEdgeShadows>
+    <costList>
+      <RSFBS>1</RSFBS>
+      <RSBC>1</RSBC>
+    </costList>
+    <combatTargetBuilding>true</combatTargetBuilding>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <designationCategory>Security</designationCategory>
+    <building>
+      <turretGunDef>Gun_RSBX</turretGunDef>
+      <turretShellDef>ArtilleryShell</turretShellDef>
+      <turretBurstWarmupTicks>220</turretBurstWarmupTicks>
+      <turretBurstCooldownTicks>190</turretBurstCooldownTicks>
+      <turretTopgraphicPath>Things/Building/Blixt</turretTopgraphicPath>
+      <buildingTags>
+        <li>Artillery</li>
+      </buildingTags>
+    </building>
+    <placeWorkers>
+      <li>PlaceWorker_NotUnderRoof</li>
+    </placeWorkers>
+    <researchPrerequisite>CannonTurret</researchPrerequisite>
+  </ThingDef>
+
+  </ThingDefs>

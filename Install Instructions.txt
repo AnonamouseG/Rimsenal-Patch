@@ -1,0 +1,16 @@
+Important: Install instructions:
+
+-Copy and paste the folders provided in this patch into your mods folder.
+
+
+EXTREMELY IMPORTANT THAT YOU:
+
+-Install the new ModCinfig file provided in this patch, if you are only using this patch. Found here:
+
+(WINDOWS: C:/Users/username/AppData/LocalLow/Ludeon Studios/RimWorld/Config)
+
+(MAC: Users/username/library/Application Support/RimWorld/Config)
+
+(LINUX: /home/username/.config/unity3d/Ludeon Studios/RimWorld/Config)
+
+-Done!

@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ThingDefs>
+
+
+  <ThingDef Name="BaseGun" Abstract="True">
+    <category>Item</category>
+    <thingClass>ThingWithComps</thingClass>
+    <equipmentType>Primary</equipmentType>
+    <pathCost>10</pathCost>
+    <useHitPoints>True</useHitPoints>
+    <selectable>True</selectable>
+    <graphicData>
+      <onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
+    </graphicData>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Flammability>0.9</Flammability>
+      <DeteriorationRate>0.5</DeteriorationRate>
+      <SellPriceFactor>0.25</SellPriceFactor>
+    </statBases>
+    <altitudeLayer>Item</altitudeLayer>
+    <alwaysHaulable>True</alwaysHaulable>
+    <tickerType>Never</tickerType>
+    <techLevel>Spacer</techLevel>
+    <thingCategories>
+      <li>GDWeapons</li>
+    </thingCategories>
+    <inspectorTabs>
+      <li>ITab_Art</li>
+    </inspectorTabs>
+    <comps>
+      <li>
+        <compClass>CompForbiddable</compClass>
+      </li>
+      <li>
+        <compClass>CompEquippable</compClass>
+      </li>
+      <li>
+        <compClass>CompQuality</compClass>
+      </li>
+      <li>
+        <compClass>CompArt</compClass>
+        <nameMaker>NamerGun</nameMaker>
+        <descriptionMaker>ArtWeaponGun</descriptionMaker>
+        <minQualityForArtistic>Excellent</minQualityForArtistic>
+      </li>
+    </comps>
+    <smeltProducts>
+      <SteelBar>10</SteelBar>
+      <PlasteelBar>10</PlasteelBar>
+    </smeltProducts>
+  </ThingDef>
+
+
+  <ThingDef Name="BaseHumanGun" ParentName="BaseGun" Abstract="True">
+    <weaponTags>
+      <li>GDGun</li>
+      <li>Gun</li>
+    </weaponTags>
+  </ThingDef>
+
+
+  <ThingDef Name="BaseBullet" Abstract="True">
+    <category>Projectile</category>
+    <tickerType>Normal</tickerType>
+    <altitudeLayer>Projectile</altitudeLayer>
+    <thingClass>Bullet</thingClass>
+    <label>bullet</label>
+    <useHitPoints>False</useHitPoints>
+    <neverMultiSelect>True</neverMultiSelect>
+    <graphicData>
+      <shaderType>Transparent</shaderType>
+    </graphicData>
+  </ThingDef>
+
+  <!-- ============================================================== -->
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_Ocelot</defName>
+    <label>pistol bullet</label>
+	<graphicData>
+    <texPath>Things/Projectile/Gbullet</texPath>
+    <graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+    <projectile>
+      <flyOverhead>false</flyOverhead>
+      <damageDef>Bullet</damageDef>
+      <DamageAmountBase>10</DamageAmountBase>
+      <Speed>60</Speed>
+    </projectile>
+  </ThingDef>
+
+
+  <ThingDef ParentName="BaseHumanGun">
+    <defName>GDOcelot</defName>
+    <label>light pistol</label>
+    <description>A Greydale Defense P04 "Ocelot". Light and easy to use, ideal personal defense weapon of noncombatants.</description>
+    <graphicData>
+	<texPath>Things/A10/Ocelot</texPath>
+    <graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+    <soundInteract>InteractPistol</soundInteract>
+    <statBases>
+      <MarketValue>400</MarketValue>
+	  <WorkToMake>2000</WorkToMake>
+      <AccuracyTouch>0.91</AccuracyTouch>
+      <AccuracyShort>0.81</AccuracyShort>
+      <AccuracyMedium>0.60</AccuracyMedium>
+      <AccuracyLong>0.42</AccuracyLong>
+      <RangedWeapon_Cooldown>0.72</RangedWeapon_Cooldown>
+    </statBases>
+	<costList>
+			<SteelBar>30</SteelBar>
+			<Silver>10</Silver>	
+		</costList>
+		<recipeMaker>
+			<skillRequirements>
+				<li>
+					<skill>Crafting</skill>
+					<minLevel>6</minLevel>
+				</li>
+			</skillRequirements>
+			<workSpeedStat>SmithingSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<recipeUsers>
+				<li>WeaponCraftingTable</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+		</recipeMaker>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>Bullet_Ocelot</projectileDef>
+        <warmupTicks>72</warmupTicks>
+        <range>25</range>
+        <burstShotCount>2</burstShotCount>
+        <ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+        <soundCast>ShotGdpistol</soundCast>
+        <soundCastTail>GunTail_Light</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+      </li>
+    </verbs>
+  </ThingDef>
+
+  <!-- ============================================== -->
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_Puma</defName>
+    <label>DMR bullet</label>
+	<graphicData>
+    <texPath>Things/Projectile/Gbullet</texPath>
+    <graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>25</damageAmountBase>
+      <speed>80</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseHumanGun">
+    <defName>GDPuma</defName>
+    <label>DMR</label>
+    <description>A Light marksman rifle that is manufactured by Greydale Defense, the PR02 "Puma" is a great rifle for precision fire support.</description>
+    <graphicData>
+	<texPath>Things/A10/Puma</texPath>
+    <graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+    <soundInteract>InteractRifle</soundInteract>
+    <statBases>
+      <MarketValue>800</MarketValue>
+	  <WorkToMake>4000</WorkToMake>
+      <AccuracyTouch>0.65</AccuracyTouch>
+      <AccuracyShort>0.76</AccuracyShort>
+      <AccuracyMedium>0.93</AccuracyMedium>
+      <AccuracyLong>0.89</AccuracyLong>
+      <RangedWeapon_Cooldown>0.72</RangedWeapon_Cooldown>
+    </statBases>
+	<costList>
+			<SteelBar>40</SteelBar>
+			<Silver>25</Silver>	
+		</costList>
+		<recipeMaker>
+			<skillRequirements>
+				<li>
+					<skill>Crafting</skill>
+					<minLevel>6</minLevel>
+				</li>
+			</skillRequirements>
+			<workSpeedStat>SmithingSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<recipeUsers>
+				<li>WeaponCraftingTable</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+		</recipeMaker>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>Bullet_Puma</projectileDef>
+        <warmupTicks>162</warmupTicks>
+        <range>40</range>
+        <soundCast>ShotGdsniper</soundCast>
+        <soundCastTail>GunTail_Heavy</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+      </li>
+    </verbs>
+  </ThingDef>
+
+  <!-- ============================================== -->
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_Panther</defName>
+    <label>general purpose rifle bullet</label>
+    <graphicData>
+	<texPath>Things/Projectile/Gbullet</texPath>
+    <graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>12</damageAmountBase>
+      <speed>75</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseHumanGun">
+    <defName>GDPanther</defName>
+    <label>general purpose rifle</label>
+    <description>A Greydale Defense GPR08 "Panther". A number one assault rifle for any colonial militia. High accuracy and durability makes the Panther a great colonial defense weapon.</description>
+    <graphicData>
+	<texPath>Things/A10/Panther</texPath>
+    <graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+    <soundInteract>InteractRifle</soundInteract>
+    <statBases>
+      <MarketValue>850</MarketValue>
+	  <WorkToMake>4000</WorkToMake>
+      <AccuracyTouch>0.75</AccuracyTouch>
+      <AccuracyShort>0.89</AccuracyShort>
+      <AccuracyMedium>0.79</AccuracyMedium>
+      <AccuracyLong>0.70</AccuracyLong>
+      <RangedWeapon_Cooldown>0.72</RangedWeapon_Cooldown>
+    </statBases>
+	<costList>
+			<SteelBar>50</SteelBar>
+			<Silver>15</Silver>	
+		</costList>
+		<recipeMaker>
+			<skillRequirements>
+				<li>
+					<skill>Crafting</skill>
+					<minLevel>6</minLevel>
+				</li>
+			</skillRequirements>
+			<workSpeedStat>SmithingSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<recipeUsers>
+				<li>WeaponCraftingTable</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+		</recipeMaker>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>Bullet_Panther</projectileDef>
+        <warmupTicks>90</warmupTicks>
+        <range>34</range>
+        <burstShotCount>2</burstShotCount>
+        <ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+        <soundCast>ShotGdgun</soundCast>
+        <soundCastTail>GunTail_Medium</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+      </li>
+    </verbs>
+  </ThingDef>
+
+  <!-- ============================================== -->
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_Jaguar</defName>
+    <label>Grenade</label>
+	<graphicData>
+    <texPath>Things/Projectile/GShell</texPath>
+    <graphicClass>Graphic_Single</graphicClass>
+	<shaderType>TransparentPostLight</shaderType>
+	</graphicData>
+    <thingClass>Projectile_Explosive</thingClass>
+    <projectile>
+      <flyOverhead>True</flyOverhead>
+      <speed>30</speed>
+      <damageDef>Bomb</damageDef>
+      <damageAmountBase>25</damageAmountBase>
+      <explosionRadius>2.0</explosionRadius>
+      <explosionDelay>100</explosionDelay>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseHumanGun">
+    <defName>GDJaguar</defName>
+    <label>grenade launcher</label>
+    <description>Designed by Greydale Defense Contractor, the GL05 "Jaguar" is a simple but effective indirect fire support weapon.</description>
+    <graphicData>
+	<texPath>Things/A10/Jaguar</texPath>
+    <graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+    <soundInteract>InteractRifle</soundInteract>
+    <statBases>
+      <MarketValue>1500</MarketValue>
+	  <WorkToMake>4000</WorkToMake>
+      <AccuracyTouch>0.69</AccuracyTouch>
+      <AccuracyShort>0.42</AccuracyShort>
+      <AccuracyMedium>0.33</AccuracyMedium>
+      <AccuracyLong>0.20</AccuracyLong>
+      <RangedWeapon_Cooldown>1.9</RangedWeapon_Cooldown>
+    </statBases>
+	<costList>
+			<SteelBar>90</SteelBar>
+			<Silver>40</Silver>
+		</costList>
+		<recipeMaker>
+			<skillRequirements>
+				<li>
+					<skill>Crafting</skill>
+					<minLevel>6</minLevel>
+				</li>
+			</skillRequirements>
+			<workSpeedStat>SmithingSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<recipeUsers>
+				<li>WeaponCraftingTable</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+		</recipeMaker>
+    <equippedStatOffsets>
+      <MoveSpeed>-1.0</MoveSpeed>
+    </equippedStatOffsets>
+    <verbs>
+      <li>
+        <forcedMissRadius>2</forcedMissRadius>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>Bullet_Jaguar</projectileDef>
+        <warmupTicks>410</warmupTicks>
+        <range>22</range>
+        <burstShotCount>2</burstShotCount>
+        <ticksBetweenBurstShots>60</ticksBetweenBurstShots>
+        <soundCast>ShotGdgrenade</soundCast>
+        <soundCastTail>GunTail_Heavy</soundCastTail>
+        <muzzleFlashScale>15</muzzleFlashScale>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+      </li>
+    </verbs>
+  </ThingDef>
+
+  <!-- ============================================== -->
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_Lynx</defName>
+    <label>LSW bullet</label>
+	<graphicData>
+    <texPath>Things/Projectile/Gbullet</texPath>
+    <graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>9</damageAmountBase>
+      <speed>70</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseHumanGun">
+    <defName>GDLynx</defName>
+    <label>light support weapon</label>
+    <description>A SW11 "Lynx". A light support weapon that is manufactured by Greydale Defense. is a well known weapon because of its simple but durable design. With this weapon, you can halt any overwhelming enemy with unceasing bursts of bullet.</description>
+    <graphicData>
+	<texPath>Things/A10/Lynx</texPath>
+    <graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+    <soundInteract>InteractRifle</soundInteract>
+    <statBases>
+      <MarketValue>1300</MarketValue>
+	  <WorkToMake>4000</WorkToMake>
+      <AccuracyTouch>0.55</AccuracyTouch>
+      <AccuracyShort>0.69</AccuracyShort>
+      <AccuracyMedium>0.45</AccuracyMedium>
+      <AccuracyLong>0.29</AccuracyLong>
+      <RangedWeapon_Cooldown>1.25</RangedWeapon_Cooldown>
+    </statBases>
+	<costList>
+			<SteelBar>50</SteelBar>
+			<Silver>10</Silver>	
+		</costList>
+		<recipeMaker>
+			<skillRequirements>
+				<li>
+					<skill>Crafting</skill>
+					<minLevel>6</minLevel>
+				</li>
+			</skillRequirements>
+			<workSpeedStat>SmithingSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<recipeUsers>
+				<li>WeaponCraftingTable</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+		</recipeMaker>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>Bullet_Lynx</projectileDef>
+        <warmupTicks>105</warmupTicks>
+        <range>29</range>
+        <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+        <burstShotCount>5</burstShotCount>
+        <soundCast>ShotGdgun</soundCast>
+        <soundCastTail>GunTail_Medium</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+      </li>
+    </verbs>
+  </ThingDef>
+
+</ThingDefs>

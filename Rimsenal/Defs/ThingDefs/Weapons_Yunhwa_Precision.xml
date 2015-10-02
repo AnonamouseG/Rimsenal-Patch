@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ThingDefs>
+
+
+  <ThingDef Name="BaseGun" Abstract="True">
+    <category>Item</category>
+    <thingClass>ThingWithComps</thingClass>
+    <equipmentType>Primary</equipmentType>
+    <pathCost>10</pathCost>
+    <useHitPoints>True</useHitPoints>
+    <selectable>True</selectable>
+    <graphicData>
+      <onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
+    </graphicData>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Flammability>0.9</Flammability>
+      <DeteriorationRate>0.5</DeteriorationRate>
+      <SellPriceFactor>0.25</SellPriceFactor>
+    </statBases>
+    <altitudeLayer>Item</altitudeLayer>
+    <alwaysHaulable>True</alwaysHaulable>
+    <tickerType>Never</tickerType>
+    <techLevel>Spacer</techLevel>
+    <thingCategories>
+      <li>YPWeapons</li>
+    </thingCategories>
+    <inspectorTabs>
+      <li>ITab_Art</li>
+    </inspectorTabs>
+    <comps>
+      <li>
+        <compClass>CompForbiddable</compClass>
+      </li>
+      <li>
+        <compClass>CompEquippable</compClass>
+      </li>
+      <li>
+        <compClass>CompQuality</compClass>
+      </li>
+      <li>
+        <compClass>CompArt</compClass>
+        <nameMaker>NamerGun</nameMaker>
+        <descriptionMaker>ArtWeaponGun</descriptionMaker>
+        <minQualityForArtistic>Excellent</minQualityForArtistic>
+      </li>
+    </comps>
+    <smeltProducts>
+      <SteelBar>10</SteelBar>
+      <PlasteelBar>10</PlasteelBar>
+    </smeltProducts>
+  </ThingDef>
+
+
+  <ThingDef Name="BaseHumanGun" ParentName="BaseGun" Abstract="True">
+    <weaponTags>
+      <li>YPGun</li>
+      <li>AdvancedGun</li>
+    </weaponTags>
+  </ThingDef>
+
+
+  <ThingDef Name="BaseBullet" Abstract="True">
+    <category>Projectile</category>
+    <tickerType>Normal</tickerType>
+    <altitudeLayer>Projectile</altitudeLayer>
+    <thingClass>Bullet</thingClass>
+    <label>bullet</label>
+    <useHitPoints>False</useHitPoints>
+    <neverMultiSelect>True</neverMultiSelect>
+    <graphicData>
+      <shaderType>Transparent</shaderType>
+    </graphicData>
+  </ThingDef>
+
+  <!-- ============================================================== -->
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>RS_Bullet_Frost</defName>
+		<label>Frost Shard</label>
+		<graphicData>
+		<texPath>Things/Projectile/Shard</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<DamageAmountBase>7</DamageAmountBase>
+			<Speed>120</Speed>
+		</projectile>
+	</ThingDef>
+
+
+	<ThingDef ParentName="BaseHumanGun">
+		<defName>RS_Gun_Frost</defName>
+		<label>Shard rifle</label>
+		<description>The Yunhwa Precision Model-489a 'Frost '. Compared to a conventional assault rifle, the Frost is equipped with a larger clip and a higher rate of fire. However, to achieve this the rifle sacrifices damage and armor piecing capability.</description>
+		<graphicData>
+		<texPath>Things/A10/Frost</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>InteractChargeRifle</soundInteract>
+		<statBases>
+			<MarketValue>1630</MarketValue>
+			<MaxHitPoints>200</MaxHitPoints>
+			<WorkToMake>3000</WorkToMake>
+				<AccuracyTouch>0.85</AccuracyTouch>
+				<AccuracyShort>0.90</AccuracyShort>
+				<AccuracyMedium>0.65</AccuracyMedium>
+				<AccuracyLong>0.35</AccuracyLong>
+		<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			 <MoveSpeed>-0.08</MoveSpeed>
+		</equippedStatOffsets>
+		<costList>
+			<SteelBar>50</SteelBar>
+			<Silver>20</Silver>
+			<Electronics>10</Electronics>	
+		</costList>
+		<recipeMaker>
+			<skillRequirements>
+				<li>
+					<skill>Crafting</skill>
+					<minLevel>6</minLevel>
+				</li>
+			</skillRequirements>
+			<workSpeedStat>SmithingSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<recipeUsers>
+				<li>WeaponCraftingTable</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+		</recipeMaker>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<projectileDef>RS_Bullet_Frost</projectileDef>
+				<burstShotCount>9</burstShotCount>
+				<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+				<warmupTicks>105</warmupTicks>
+				<range>25</range>
+				<soundCast>RS_ShotFrost</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+  				<muzzleFlashScale>9</muzzleFlashScale>
+			</li>
+		</verbs>
+	</ThingDef>
+
+  <!-- ============================================================== -->
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>RS_Bullet_Chill</defName>
+		<label>Chill Shard</label>
+		<graphicData>
+		<texPath>Things/Projectile/Shard</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<DamageAmountBase>7</DamageAmountBase>
+			<Speed>120</Speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseHumanGun">
+		<defName>RS_Gun_Chill</defName>
+		<label>Shard SMG</label>
+		<description>The Yunhwa Precision Model 481c 'Chill' shard SMG. In spite of the Chill's aiming assist pseudo A.I , it's accuracy drops sharply at long distance's. However, the Chill is an ideal tool for dealing with soft targets at close range.</description>
+		<graphicData>
+		<texPath>Things/A10/Chill</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>InteractChargeRifle</soundInteract>
+		<statBases>
+			<MarketValue>1300</MarketValue>
+			<MaxHitPoints>150</MaxHitPoints>
+			<WorkToMake>2500</WorkToMake>
+				<AccuracyTouch>0.90</AccuracyTouch>
+				<AccuracyShort>0.85</AccuracyShort>
+				<AccuracyMedium>0.30</AccuracyMedium>
+				<AccuracyLong>0.20</AccuracyLong>
+				<RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<SteelBar>50</SteelBar>
+			<Silver>15</Silver>
+			<Electronics>10</Electronics>	
+		</costList>
+		<recipeMaker>
+			<skillRequirements>
+				<li>
+					<skill>Crafting</skill>
+					<minLevel>6</minLevel>
+				</li>
+			</skillRequirements>
+			<workSpeedStat>SmithingSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<recipeUsers>
+				<li>WeaponCraftingTable</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+		</recipeMaker>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<projectileDef>RS_Bullet_Chill</projectileDef>
+				<burstShotCount>12</burstShotCount>
+				<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+				<warmupTicks>65</warmupTicks>
+				<range>16</range>
+				<soundCast>RS_ShotChill</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+  				<muzzleFlashScale>9</muzzleFlashScale>
+			</li>
+		</verbs>
+	</ThingDef>
+
+  <!-- ============================================================== -->
+
+ 	<ThingDef ParentName="BaseBullet">
+		<defName>RS_Bullet_Glacier</defName>
+		<label>Glacier Spike</label>
+		<graphicData>
+		<texPath>Things/Projectile/Spike</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<DamageAmountBase>10</DamageAmountBase>
+			<Speed>200</Speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseHumanGun">
+		<defName>RS_Gun_Glacier</defName>
+		<label>Spike sniper rifle</label>
+		<description> Yunhwa precision's latest sniper rifle, the Model-492 'Glacier'. Unlike more common precision rifles, the Glacier fires spikes of carbon crystal at velocities up to three times the speed of sound. Its extremely high muzzle velocity and class IV targeting assist pseudo A.I ensure no target can escape from its fire.</description>
+		<graphicData>
+		<texPath>Things/A10/Glacier</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>InteractChargeRifle</soundInteract>
+		<statBases>
+			<MarketValue>1200</MarketValue>
+			<WorkToMake>3000</WorkToMake>
+			<MaxHitPoints>100</MaxHitPoints>
+				<AccuracyTouch>0.45</AccuracyTouch>
+				<AccuracyShort>0.55</AccuracyShort>
+				<AccuracyMedium>0.73</AccuracyMedium>
+				<AccuracyLong>0.89</AccuracyLong>
+				<RangedWeapon_Cooldown>2.1</RangedWeapon_Cooldown>
+		</statBases>
+		<equippedStatOffsets>
+			 <MoveSpeed>-0.2</MoveSpeed>
+		</equippedStatOffsets>
+		<costList>
+			<SteelBar>50</SteelBar>
+			<Silver>20</Silver>
+			<Electronics>10</Electronics>	
+		</costList>
+		<recipeMaker>
+			<skillRequirements>
+				<li>
+					<skill>Crafting</skill>
+					<minLevel>6</minLevel>
+				</li>
+			</skillRequirements>
+			<workSpeedStat>SmithingSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<recipeUsers>
+				<li>WeaponCraftingTable</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+		</recipeMaker>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<projectileDef>RS_Bullet_Glacier</projectileDef>
+				<burstShotCount>7</burstShotCount>
+				<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+				<warmupTicks>210</warmupTicks>
+				<range>42</range>
+				<soundCast>RS_ShotGlacier</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+  				<muzzleFlashScale>9</muzzleFlashScale>
+			</li>
+		</verbs>
+	</ThingDef>
+
+  <!-- ============================================================== -->
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>RS_Bullet_Snowburst</defName>
+		<label>Chill Shard</label>
+		<graphicData>
+		<texPath>Things/Projectile/Shard</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<DamageAmountBase>7</DamageAmountBase>
+			<Speed>150</Speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseHumanGun">
+		<defName>RS_Gun_Snowburst</defName>
+		<label>Dual wield shard pistols</label>
+		<description>A pair of Yunhwa Precision Model-480g "Snowburst" pistols. The Snowburst has an extremely short range but while within close range the pistol can tear enemies to pieces. As the old saying goes "Double the gun, double the fun!"</description>
+		<graphicData>
+		<texPath>Things/A10/Snowburst</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>InteractChargeRifle</soundInteract>
+		<statBases>
+			<MarketValue>1800</MarketValue>
+			<WorkToMake>3000</WorkToMake>
+			<MaxHitPoints>150</MaxHitPoints>
+				<AccuracyTouch>0.95</AccuracyTouch>
+				<AccuracyShort>0.90</AccuracyShort>
+				<AccuracyMedium>0.70</AccuracyMedium>
+				<AccuracyLong>0.40</AccuracyLong>
+				<RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<SteelBar>50</SteelBar>
+			<Silver>15</Silver>
+			<Electronics>10</Electronics>	
+		</costList>
+		<recipeMaker>
+			<skillRequirements>
+				<li>
+					<skill>Crafting</skill>
+					<minLevel>6</minLevel>
+				</li>
+			</skillRequirements>
+			<workSpeedStat>SmithingSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<recipeUsers>
+				<li>WeaponCraftingTable</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+		</recipeMaker>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<projectileDef>RS_Bullet_Snowburst</projectileDef>
+				<burstShotCount>6</burstShotCount>
+				<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+				<warmupTicks>20</warmupTicks>
+				<range>12</range>
+				<soundCast>RS_ShotChill</soundCast>
+				<soundCastTail>GunTail_Light</soundCastTail>
+  				<muzzleFlashScale>9</muzzleFlashScale>
+			</li>
+		</verbs>
+	</ThingDef>
+
+  <!-- ============================================================== -->
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_Boreas</defName>
+    <label>Microwave</label>
+    <graphicData>
+	<texPath>Things/Projectile/Microwave</texPath>
+    <graphicClass>Graphic_Single</graphicClass>
+	<shaderType>TransparentPostLight</shaderType>
+	</graphicData>
+    <thingClass>Projectile_Explosive</thingClass>
+    <projectile>
+      <speed>100</speed>
+      <damageDef>Microwave</damageDef>
+      <damageAmountBase>1</damageAmountBase>
+      <explosionRadius>2</explosionRadius>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseHumanGun">
+    <defName>YPBoreas</defName>
+    <label>Microwave gun</label>
+    <description>Yunhwa Precision Model-11a "Boreas" is a millimeter wave source that boils the water in the target's skin and thus causes incapacitating pain.</description>
+    <graphicData>
+	<texPath>Things/A10/Boreas</texPath>
+    <graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+    <soundInteract>InteractRifle</soundInteract>
+    <statBases>
+      <MarketValue>2400</MarketValue>
+	  <WorkToMake>3000</WorkToMake>
+      <AccuracyTouch>0.79</AccuracyTouch>
+      <AccuracyShort>0.72</AccuracyShort>
+      <AccuracyMedium>0.63</AccuracyMedium>
+      <AccuracyLong>0.50</AccuracyLong>
+      <RangedWeapon_Cooldown>2.3</RangedWeapon_Cooldown>
+    </statBases>
+    <equippedStatOffsets>
+      <MoveSpeed>-1.2</MoveSpeed>
+    </equippedStatOffsets>
+	<costList>
+			<SteelBar>50</SteelBar>
+			<Silver>25</Silver>
+			<Electronics>10</Electronics>	
+		</costList>
+		<recipeMaker>
+			<skillRequirements>
+				<li>
+					<skill>Crafting</skill>
+					<minLevel>6</minLevel>
+				</li>
+			</skillRequirements>
+			<workSpeedStat>SmithingSpeed</workSpeedStat>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Smith</effectWorking>
+			<soundWorking>Recipe_Smith</soundWorking>
+			<recipeUsers>
+				<li>WeaponCraftingTable</li>
+			</recipeUsers>
+			<unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+		</recipeMaker>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>Bullet_Boreas</projectileDef>
+        <ai_IsIncendiary>true</ai_IsIncendiary>
+        <warmupTicks>160</warmupTicks>
+        <range>25</range>
+        <burstShotCount>3</burstShotCount>
+        <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+        <soundCast>RS_ShotBoreas</soundCast>
+        <soundCastTail>GunTail_Light</soundCastTail>
+        <muzzleFlashScale>15</muzzleFlashScale>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+      </li>
+    </verbs>
+  </ThingDef>
+
+</ThingDefs>

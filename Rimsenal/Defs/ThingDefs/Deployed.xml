@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ThingDefs>
+
+  <ThingDef Name="BuildingBase" Abstract="True">
+    <category>Building</category>
+    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
+    <selectable>true</selectable>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <repairEffect>Repair</repairEffect>
+    <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+    <filthLeaving>BuildingRubble</filthLeaving>
+  </ThingDef>
+
+<!--=============== Deployed Notung ===============-->
+  <ThingDef ParentName="BuildingBase">
+    <defName>DeployedNotung</defName>
+    <label>Deployed AM rifle</label>
+    <thingClass>Building_TurretGun</thingClass>
+	<graphicData>
+    <texPath>Building/Notung</texPath>
+    <graphicClass>Graphic_Multi</graphicClass>
+	<shadowData>
+        <volume>(0.3, 0.6, 0.3)</volume>
+      </shadowData>
+	</graphicData>
+    <altitudeLayer>Waist</altitudeLayer>
+    <hasInteractionCell>True</hasInteractionCell>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+    <statBases>
+      <MaxHitPoints>120</MaxHitPoints>
+      <Flammability>0.8</Flammability>
+      <WorkToMake>10</WorkToMake>
+      <Beauty>0</Beauty>
+    </statBases>
+    <tickerType>Normal</tickerType>
+    <comps>
+      <li>
+        <compClass>CompForbiddable</compClass>
+      </li>
+      <li>
+        <compClass>CompMannable</compClass>
+        <manWorkType>Violent</manWorkType>
+      </li>
+    </comps>
+    <description>Deployed AM rifle.</description>
+    <size>(1,1)</size>
+    <passability>PassThroughOnly</passability>
+	<pathCost>40</pathCost>
+    <fillPercent>0.5</fillPercent>
+    <costList>
+      <RS_Gun_Notung>1</RS_Gun_Notung>
+    </costList>
+    <combatTargetBuilding>true</combatTargetBuilding>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <designationCategory>Security</designationCategory>
+    <building>
+      <turretGunDef>NotungDP</turretGunDef>
+      <turretTopgraphicPath>Building/NotungDP</turretTopgraphicPath>
+      <turretBurstWarmupTicks>250</turretBurstWarmupTicks>
+      <turretBurstCooldownTicks>110</turretBurstCooldownTicks>
+    </building>
+  </ThingDef>
+</ThingDefs>

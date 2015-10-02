@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ThingDefs>
+
+  <ThingDef Name="BaseGun" Abstract="True">
+    <category>Item</category>
+    <thingClass>ThingWithComps</thingClass>
+    <equipmentType>Primary</equipmentType>
+    <pathCost>10</pathCost>
+    <useHitPoints>True</useHitPoints>
+    <selectable>True</selectable>
+    <graphicData>
+      <onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
+    </graphicData>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <DeteriorationRate>1</DeteriorationRate>
+      <SellPriceFactor>0.5</SellPriceFactor>
+    </statBases>
+    <altitudeLayer>Item</altitudeLayer>
+    <alwaysHaulable>True</alwaysHaulable>
+    <tickerType>Never</tickerType>
+    <techLevel>Midworld</techLevel>
+    <thingCategories>
+      <li>WeaponsRanged</li>
+    </thingCategories>
+    <inspectorTabs>
+      <li>ITab_Art</li>
+    </inspectorTabs>
+    <comps>
+      <li>
+        <compClass>CompForbiddable</compClass>
+      </li>
+      <li>
+        <compClass>CompEquippable</compClass>
+      </li>
+      <li>
+        <compClass>CompQuality</compClass>
+      </li>
+      <li>
+        <compClass>CompArt</compClass>
+        <nameMaker>NamerGun</nameMaker>
+        <descriptionMaker>ArtWeaponGun</descriptionMaker>
+        <minQualityForArtistic>Excellent</minQualityForArtistic>
+      </li>
+    </comps>
+    <smeltProducts>
+      <Steel>20</Steel>
+    </smeltProducts>
+  </ThingDef>
+
+
+  <ThingDef Name="BaseHumanGun" ParentName="BaseGun" Abstract="True">
+    <weaponTags>
+      <li>Gun</li>
+    </weaponTags>
+  </ThingDef>
+
+
+  <ThingDef Name="BaseBullet" Abstract="True">
+    <category>Projectile</category>
+    <tickerType>Normal</tickerType>
+    <altitudeLayer>Projectile</altitudeLayer>
+    <thingClass>Bullet</thingClass>
+    <label>bullet</label>
+    <useHitPoints>False</useHitPoints>
+    <neverMultiSelect>True</neverMultiSelect>
+    <graphicData>
+      <shaderType>Transparent</shaderType>
+    </graphicData>
+  </ThingDef>
+
+  <!-- ================ ISG ============== -->
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_IS</defName>
+    <label>Shard</label>
+    <graphicData>
+      <texPath>Things/Projectile/Shard</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>3</damageAmountBase>
+      <speed>150</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseGun">
+    <defName>Gun_RSSS</defName>
+    <label>shard sentry gun</label>
+    <graphicData>
+      <texPath>Things/A9/Frost</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <menuHidden>true</menuHidden>
+    <description>shard gun attached to a turret.</description>
+    <soundInteract>InteractRifle</soundInteract>
+    <canBeSpawningInventory>false</canBeSpawningInventory>
+    <tradeability>Never</tradeability>
+    <statBases>
+      <AccuracyTouch>0.96</AccuracyTouch>
+      <AccuracyShort>0.55</AccuracyShort>
+      <AccuracyMedium>0.26</AccuracyMedium>
+      <AccuracyLong>0.17</AccuracyLong>
+      <RangedWeapon_Cooldown>0.33</RangedWeapon_Cooldown>
+    </statBases>
+    <weaponTags>
+      <li>TurretGun</li>
+    </weaponTags>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>Bullet_IS</projectileDef>
+        <warmupTicks>60</warmupTicks>
+        <range>24</range>
+        <ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+        <burstShotCount>8</burstShotCount>
+        <soundCast>RS_ShotGlacier</soundCast>
+        <soundCastTail>GunTail_Medium</soundCastTail>
+        <muzzleFlashScale>10</muzzleFlashScale>
+      </li>
+    </verbs>
+  </ThingDef>
+
+<!-- ================ AGL ============== -->
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_AGL</defName>
+    <label>grenade</label>
+    <graphicData>
+      <texPath>Things/Projectile/GShell</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+    </graphicData>
+    <thingClass>Projectile_Explosive</thingClass>
+    <projectile>
+      <damageDef>Bomb</damageDef>
+      <damageAmountBase>18</damageAmountBase>
+      <explosionRadius>1.5</explosionRadius>
+      <speed>32</speed>
+     <explosionDelay>25</explosionDelay>
+    </projectile>
+   </ThingDef>
+
+  <ThingDef ParentName="BaseGun">
+    <defName>Gun_RSGN</defName>
+    <label>Automatic grenade launcher</label>
+    <graphicData>
+      <texPath>Things/A9/Jaguar</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <menuHidden>true</menuHidden>
+    <description>Automatic grenade launcher</description>
+    <soundInteract>InteractRifle</soundInteract>
+    <canBeSpawningInventory>false</canBeSpawningInventory>
+    <tradeability>Never</tradeability>
+    <statBases>
+      <AccuracyTouch>0.5</AccuracyTouch>
+      <AccuracyShort>0.7</AccuracyShort>
+      <AccuracyMedium>0.8</AccuracyMedium>
+      <AccuracyLong>0.8</AccuracyLong>
+      <RangedWeapon_Cooldown>0.8</RangedWeapon_Cooldown>
+    </statBases>
+    <weaponTags>
+      <li>TurretGun</li>
+    </weaponTags>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>Bullet_AGL</projectileDef>
+        <warmupTicks>20</warmupTicks>
+        <range>30</range>
+        <minRange>3.5</minRange>
+        <burstShotCount>1</burstShotCount>
+        <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+        <soundCast>ShotGdgrenade</soundCast>
+        <forcedMissRadius>2</forcedMissRadius>
+        <soundCastTail>GunTail_Heavy</soundCastTail>
+        <muzzleFlashScale>15</muzzleFlashScale>
+      </li>
+    </verbs>
+  </ThingDef>
+
+  <!-- ================ Harvester ============== -->
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_RSHV</defName>
+    <label>Harvester laser</label>
+    <graphicData>
+      <texPath>Things/Projectile/Pulse</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <thingClass>Projectile_Explosive</thingClass>
+    <projectile>
+      <damageDef>Optic</damageDef>
+      <DamageAmountBase>13</DamageAmountBase>
+      <Speed>300</Speed>
+      <explosionRadius>1</explosionRadius>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseGun">
+    <defName>Gun_RSHV</defName>
+    <label>harvester cannon</label>
+    <graphicData>
+      <texPath>Things/A9/Pacificator</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <menuHidden>true</menuHidden>
+    <description>Destructive burst laser cannon.</description>
+    <soundInteract>InteractRifle</soundInteract>
+    <canBeSpawningInventory>false</canBeSpawningInventory>
+    <tradeability>Never</tradeability>
+    <statBases>
+      <AccuracyTouch>0.95</AccuracyTouch>
+      <AccuracyShort>0.90</AccuracyShort>
+      <AccuracyMedium>0.86</AccuracyMedium>
+      <AccuracyLong>0.80</AccuracyLong>
+      <RangedWeapon_Cooldown>0.95</RangedWeapon_Cooldown>
+    </statBases>
+    <weaponTags>
+      <li>TurretGun</li>
+    </weaponTags>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>Bullet_RSHV</projectileDef>
+        <warmupTicks>50</warmupTicks>
+        <minRange>3</minRange>
+        <range>32</range>
+        <forcedMissRadius>1</forcedMissRadius>
+        <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+        <burstShotCount>4</burstShotCount>
+        <soundCast>RS_ShotArbitrator</soundCast>
+        <soundCastTail>GunTail_Heavy</soundCastTail>
+        <muzzleFlashScale>18</muzzleFlashScale>
+      </li>
+    </verbs>
+  </ThingDef>
+
+
+  <!-- ================ Orkan ============== -->
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_RSOK</defName>
+    <label>HE rocket</label>
+    <graphicData>
+      <texPath>Things/Projectile/Rocket</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+    </graphicData>
+    <thingClass>Projectile_Explosive</thingClass>
+    <projectile>
+      <damageDef>Bomb</damageDef>
+      <damageAmountBase>30</damageAmountBase>
+      <speed>60</speed>
+      <explosionRadius>2</explosionRadius>
+      <flyOverhead>true</flyOverhead>
+      <soundHitThickRoof>ArtilleryHitThickRoof</soundHitThickRoof>
+      <soundExplode>MortarBomb_Explode</soundExplode>
+      <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+      <soundAmbient>MortarRound_Ambient</soundAmbient>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseGun">
+    <defName>Gun_RSOK</defName>
+    <label>orkan salvo</label>
+    <graphicData>
+      <texPath>Things/Projectile/Rocket</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <menuHidden>true</menuHidden>
+    <description>Destructive rocket salvo.</description>
+    <soundInteract>InteractRifle</soundInteract>
+    <canBeSpawningInventory>false</canBeSpawningInventory>
+    <tradeability>Never</tradeability>
+    <statBases>
+      <AccuracyTouch>0.72</AccuracyTouch>
+      <AccuracyShort>0.89</AccuracyShort>
+      <AccuracyMedium>0.92</AccuracyMedium>
+      <AccuracyLong>0.80</AccuracyLong>
+      <RangedWeapon_Cooldown>8.9</RangedWeapon_Cooldown>
+    </statBases>
+    <weaponTags>
+      <li>Artillery</li>
+    </weaponTags>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>Bullet_RSOK</projectileDef>
+        <warmupTicks>150</warmupTicks>
+        <minRange>30</minRange>
+        <range>500</range>
+        <forcedMissRadius>9</forcedMissRadius>
+        <ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+        <burstShotCount>15</burstShotCount>
+        <soundCast>RS_ShotOrkan</soundCast>
+        <soundCastTail>GunTail_Heavy</soundCastTail>
+        <muzzleFlashScale>22</muzzleFlashScale>
+      </li>
+    </verbs>
+  </ThingDef>
+
+  <!-- ================ Blixt ============== -->
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_RSBX</defName>
+    <label>molten metal core</label>
+    <graphicData>
+      <texPath>Things/Projectile/Shell</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+    </graphicData>
+    <thingClass>Projectile_Explosive</thingClass>
+    <projectile>
+      <damageDef>Bomb</damageDef>
+      <damageAmountBase>120</damageAmountBase>
+      <speed>150</speed>
+      <explosionRadius>1</explosionRadius>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseGun">
+    <defName>Gun_RSBX</defName>
+    <label>blixt cannon</label>
+    <graphicData>
+      <texPath>Things/Projectile/Shell</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <menuHidden>true</menuHidden>
+    <description>Heavy barrel anti mechanoid cannon.</description>
+    <soundInteract>InteractRifle</soundInteract>
+    <canBeSpawningInventory>false</canBeSpawningInventory>
+    <tradeability>Never</tradeability>
+    <statBases>
+      <AccuracyTouch>0.69</AccuracyTouch>
+      <AccuracyShort>0.75</AccuracyShort>
+      <AccuracyMedium>0.72</AccuracyMedium>
+      <AccuracyLong>0.69</AccuracyLong>
+      <RangedWeapon_Cooldown>4.2</RangedWeapon_Cooldown>
+    </statBases>
+    <weaponTags>
+      <li>Artillery</li>
+    </weaponTags>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>Bullet_RSBX</projectileDef>
+        <warmupTicks>120</warmupTicks>
+        <minRange>8</minRange>
+        <range>50</range>
+        <ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+        <soundCast>RS_ShotBlixt</soundCast>
+        <soundCastTail>GunTail_Heavy</soundCastTail>
+        <muzzleFlashScale>22</muzzleFlashScale>
+      </li>
+    </verbs>
+  </ThingDef>
+
+</ThingDefs>

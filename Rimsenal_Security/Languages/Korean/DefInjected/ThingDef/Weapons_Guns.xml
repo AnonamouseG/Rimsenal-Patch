@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--suppress ALL -->
+<LanguageData>
+
+	<RSSS.label>파편 포탑</RSSS.label>
+	<RSSS.description>파편포가 달린 포탑. 연사속도가 높지만 화력은 낮습니다. 파괴시 폭발합니다.</RSSS.description>
+
+	<Gun_RSSS.label>파편포</Gun_RSSS.label>
+	<Gun_RSSS.description>결정파편 속사포입니다.</Gun_RSSS.description>
+
+	<RSGN.label>유탄발사기 진지</RSGN.label>
+	<RSGN.description>자동 유탄 발사기를 단 고정진지입니다. 대규모로 몰려드는 적병을 상대할 때 좋습니다. 파괴시 폭발합니다.</RSGN.description>
+
+	<Gun_RSGN.label>자동 유탄 발사기</Gun_RSGN.label>
+	<Gun_RSGN.description>자동 유탄 발사기</Gun_RSGN.description>
+
+	<RSHV.label>하베스터</RSHV.label>
+	<RSHV.description>이런 형태의 레이저 속사포 진지는 이른바 "하베스터(수확자)"라는 이름으로 불립니다. 이름에서 유추할 수 있듯 이 중화기 포탑은 무리지은 적을 순식간에 쓸어담을 수 있습니다.</RSHV.description>
+
+	<Gun_RSHV.label>하베스터 캐논</Gun_RSHV.label>
+	<Gun_RSHV.description>파괴적인 레이저병기.</Gun_RSHV.description>
+
+	<RSOK.label>오르칸 런처</RSOK.label>
+	<RSOK.description>"오르칸" 다연장 로켓 발사대는 강력한 공성병기입니다. 먼 거리에서 적진을 향해 지원사격을 가할 수 있습니다. 어서 적들에게 지옥을 보여주세요.</RSOK.description>
+
+	<Gun_RSOK.label>오르칸 발사대</Gun_RSOK.label>
+	<Gun_RSOK.description>파괴적인 로켓포.</Gun_RSOK.description>
+
+	<RSBX.label>블릭스트 캐논</RSBX.label>
+	<RSBX.description>융용된 금속을 발사하는 블릭스트 포는 요튠하임 프라임의 주력 대 메카노이드 중화기입니다.</RSBX.description>
+
+	<Gun_RSBX.label>블릭스트 포</Gun_RSBX.label>
+	<Gun_RSBX.description>강력한 대 메카노이드 포</Gun_RSBX.description>
+
+</LanguageData>

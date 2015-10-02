@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ThingDefs>
+
+  <ThingDef Name="BaseMeleeWeapon" Abstract="True">
+    <category>Item</category>
+    <thingClass>ThingWithComps</thingClass>
+    <equipmentType>Primary</equipmentType>
+    <pathCost>10</pathCost>
+    <useHitPoints>True</useHitPoints>
+    <selectable>True</selectable>
+    <graphicData>
+      <onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
+    </graphicData>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <DeteriorationRate>0.5</DeteriorationRate>
+      <SellPriceFactor>0.25</SellPriceFactor>
+    </statBases>
+    <altitudeLayer>Item</altitudeLayer>
+    <alwaysHaulable>True</alwaysHaulable>
+    <tickerType>Never</tickerType>
+    <techLevel>Midworld</techLevel>
+    <weaponTags>
+      <li>Melee</li>
+    </weaponTags>
+    <thingCategories>
+      <li>WeaponsMelee</li>
+    </thingCategories>
+    <comps>
+      <li>
+        <compClass>CompForbiddable</compClass>
+      </li>
+      <li>
+        <compClass>CompEquippable</compClass>
+      </li>
+      <li>
+        <compClass>CompQuality</compClass>
+      </li>
+      <li>
+        <compClass>CompArt</compClass>
+        <nameMaker>NamerMeleeWeapon</nameMaker>
+        <descriptionMaker>ArtWeaponMelee</descriptionMaker>
+        <minQualityForArtistic>Excellent</minQualityForArtistic>
+      </li>
+    </comps>
+	<recipeMaker>
+      <workSpeedStat>SmithingSpeed</workSpeedStat>
+      <workSkill>Crafting</workSkill>
+      <effectWorking>Smith</effectWorking>
+      <soundWorking>Recipe_Smith</soundWorking>
+      <recipeUsers>
+        <li>TableSmithing</li>
+      </recipeUsers>
+      <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+    </recipeMaker>
+    <inspectorTabs>
+      <li>ITab_Art</li>
+    </inspectorTabs>
+  </ThingDef>
+
+
+
+  <ThingDef Name="BaseMeleeWeapon_Sharp" ParentName="BaseMeleeWeapon" Abstract="True">
+    <recipeMaker>
+    <defaultIngredientFilter>
+      <categories>
+        <li>Root</li>
+      </categories>
+      <exceptedThingDefs>
+        <li>Silver</li>
+        <li>Gold</li>
+        <li>WoodLog</li>
+      </exceptedThingDefs>
+    </defaultIngredientFilter>
+    </recipeMaker>
+  </ThingDef>
+
+  <ThingDef Name="BaseMeleeWeapon_Blunt" ParentName="BaseMeleeWeapon" Abstract="True">
+    <recipeMaker>
+      <defaultIngredientFilter>
+        <categories>
+          <li>Root</li>
+        </categories>
+        <exceptedThingDefs>
+          <li>Silver</li>
+          <li>Gold</li>
+        </exceptedThingDefs>
+      </defaultIngredientFilter>
+    </recipeMaker>
+  </ThingDef>
+  
+  <!-- ============================================================== -->
+
+  <ThingDef ParentName="BaseMeleeWeapon_Sharp">
+    <defName>GD_Fang</defName>
+    <label>combat blade</label>
+    <description>A "Fang" Combat blade of Greydale Defence. Good for chop down trees or enemies limbs.</description>
+    <graphicData>
+	<texPath>Things/A10/Fang</texPath>
+    <graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+    <soundInteract>InteractPistol</soundInteract>
+    <techLevel>Spacer</techLevel>
+    <costStuffCount>80</costStuffCount>
+    <statBases>
+	  <WorkToMake>10000</WorkToMake>
+      <MeleeWeapon_DamageAmount>17</MeleeWeapon_DamageAmount>
+      <MeleeWeapon_Cooldown>1.9</MeleeWeapon_Cooldown>
+    </statBases>
+    <equippedAngleOffset>35</equippedAngleOffset>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <equippedStatOffsets>
+      <PlantWorkSpeed>0.4</PlantWorkSpeed>
+    </equippedStatOffsets>
+    <verbs>
+      <li>
+        <verbClass>Verb_MeleeAttack</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <meleeDamageDef>Cut</meleeDamageDef>
+      </li>
+    </verbs>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseMeleeWeapon_Sharp">
+    <defName>YP_Icemist</defName>
+    <label>Vibroknife</label>
+    <description>Light but extremely sharp, the "Icemist" is the close combat weapon of Yunhwa Precision's private army. It is a ideal tool for assassination.</description>
+    <graphicData>
+	<texPath>Things/A10/Icemist</texPath>
+    <graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+    <soundInteract>InteractPistol</soundInteract>
+    <costStuffCount>85</costStuffCount>
+    <statBases>
+	  <WorkToMake>10000</WorkToMake>
+      <MeleeWeapon_DamageAmount>17</MeleeWeapon_DamageAmount>
+      <MeleeWeapon_Cooldown>1.3</MeleeWeapon_Cooldown>
+    </statBases>
+    <equippedAngleOffset>0</equippedAngleOffset>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <verbs>
+      <li>
+        <verbClass>Verb_MeleeAttack</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <meleeDamageDef>Cut</meleeDamageDef>
+      </li>
+    </verbs>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseMeleeWeapon_Blunt">
+    <defName>JI_Orm</defName>
+    <label>Assault hammer</label>
+    <techLevel>Spacer</techLevel>
+    <description>"Orm", the Serpent is a massive sledge hammer that manufactured from Jotun Interstellar. Just as heavy as it seems, Orm could destroy a entire wall with a one big swing.</description>
+    <graphicData>
+	<texPath>Things/A10/Orm</texPath>
+    <graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+    <costStuffCount>150</costStuffCount>
+    <statBases>
+	  <WorkToMake>20000</WorkToMake>
+      <MeleeWeapon_DamageAmount>35</MeleeWeapon_DamageAmount>
+      <MeleeWeapon_Cooldown>2.7</MeleeWeapon_Cooldown>
+    </statBases>
+    <equippedAngleOffset>0</equippedAngleOffset>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <verbs>
+      <li>
+        <verbClass>Verb_MeleeAttack</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <meleeDamageDef>Blunt</meleeDamageDef>
+      </li>
+    </verbs>
+  </ThingDef>
+
+
+
+  <ThingDef ParentName="BaseMeleeWeapon_Blunt">
+    <defName>AD_Lawkeeper</defName>
+    <label>Concussion baton</label>
+    <description>Standard issue close combat weapon of Federation Peacekeeper Corps, the "Lawkeeper" is simple non lethal weapon in show, but it's not.</description>
+    <graphicData>
+	<texPath>Things/A10/Lawkeeper</texPath>
+    <graphicClass>Graphic_Single</graphicClass>
+	</graphicData>
+    <techLevel>Spacer</techLevel>
+    <thingCategories>
+      <li>ADWeapons</li>
+    </thingCategories>
+ 		<weaponTags>
+  		    <li>FedCC</li>
+ 		</weaponTags>
+    <costStuffCount>100</costStuffCount>
+    <statBases>
+	  <WorkToMake>20000</WorkToMake>
+      <MeleeWeapon_DamageAmount>24</MeleeWeapon_DamageAmount>
+      <MeleeWeapon_Cooldown>2.0</MeleeWeapon_Cooldown>
+    </statBases>
+    <equippedAngleOffset>0</equippedAngleOffset>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <verbs>
+      <li>
+        <verbClass>Verb_MeleeAttack</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <meleeDamageDef>Blunt</meleeDamageDef>
+      </li>
+    </verbs>
+  </ThingDef>
+
+
+
+</ThingDefs>
